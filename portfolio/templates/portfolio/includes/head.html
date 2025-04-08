@@ -1,0 +1,14 @@
+{% load static %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="{% block meta_description %}JohnDoe Portfolio{% endblock %}">
+<meta name="author" content="Devcrud">
+
+<title>{% block title %}JohnDoe{% endblock %}</title>
+
+<link rel="icon" href="{% static 'imgs/favicon.png' %}" type="image/png">
+<link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/johndoe.css' %}">
+
+{% block extra_css %}{% endblock %}

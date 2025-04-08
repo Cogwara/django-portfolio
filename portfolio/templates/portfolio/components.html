@@ -1,0 +1,33 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Components{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="header header-mini"> 
+    <div class="header-title">Components</div> 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'portfolio:home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Components</li>
+        </ol>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Buttons Section -->
+    <h3 class="mt-5">Buttons</h3>
+    <hr>
+    <!-- ... (copy all the buttons content from your original components.html) ... -->
+    
+    <!-- Inputs Section -->
+    <h3>Inputs</h3>
+    <hr>
+    <!-- ... (copy all the inputs content from your original components.html) ... -->
+    
+    <!-- Continue with all other sections from components.html -->
+    <!-- Dropdowns, Navbars, Progress Bars, Paginations, Badges, Alerts, Tables, Typography -->
+</div>
+{% endblock %}

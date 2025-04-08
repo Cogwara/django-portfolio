@@ -1,0 +1,33 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+/static/
+/staticfiles/
+/media/
+
+# Environments
+.env
+venv/
+env/
+
+# VSCode
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+# PyCharm
+.idea/
+# Jupyter Notebook
+.ipynb_checkpoints
+# Python
+*.egg-info/
+*.egg
+# Pytest
+*.cover
+.coveragerc
+*.hypothesis/
+.coverage
+# Pytest cache
+.cache

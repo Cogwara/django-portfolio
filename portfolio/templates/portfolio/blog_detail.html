@@ -1,0 +1,41 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+ <div class="row">
+  <div class="col-lg-8">
+   <!-- Blog Post Content -->
+   <article>
+    <header class="mb-4">
+     <!-- Post title-->
+     <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+     <!-- Post meta content-->
+     <div class="text-muted fst-italic mb-2">Posted on {{ post.date_posted }} by {{ post.author }}</div>
+     <!-- Post categories-->
+     {% for category in post.categories.all %}
+     <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ category.name }}</a>
+     {% endfor %}
+    </header>
+    <!-- Preview image figure-->
+    {% if post.image %}
+    <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.image.url }}" alt="{{ post.title }}" /></figure>
+    {% endif %}
+    <!-- Post content-->
+    <section class="mb-5">
+     {{ post.content|safe }}
+    </section>
+   </article>
+  </div>
+  <!-- Side widgets-->
+  <div class="col-lg-4">
+   <!-- Search widget-->
+   <div class="card mb-4">
+    <div class="card-header">Search</div>
+    <div class="card-body">
+     <div class="input-group">
+      <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+      <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+     </div>
+    </div>
+   </div>
+{% endblock %}

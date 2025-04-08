@@ -1,0 +1,326 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- About Section -->
+<section class="section" id="about">
+    <div class="row about-section">
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">Who am I?</h3>
+            <span class="line mb-5"></span>
+            <h5 class="mb-3">{{ profile.description|linebreaks }}</h5>
+            {% if profile.resume %}
+            <a href="{{ profile.resume.url }}" class="btn btn-outline-danger" download>
+                <i class="icon-down-circled2"></i>Download My CV
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">Personal Info</h3>
+            <span class="line mb-5"></span>
+            <ul class="mt40 info list-unstyled">
+                <li><span>Birthdate</span>: {{ profile.birthdate|date:"m/d/Y" }}</li>
+                <li><span>Email</span>: {{ profile.email }}</li>
+                <li><span>Phone</span>: {{ profile.phone }}</li>
+                <li><span>Address</span>: {{ profile.address }}</li>
+            </ul>
+            <ul class="social-icons pt-3">
+                {% if profile.facebook %}
+                <li class="social-item">
+                    <a class="social-link" href="{{ profile.facebook }}">
+                        <i class="ti-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if profile.twitter %}
+                <li class="social-item">
+                    <a class="social-link" href="{{ profile.twitter }}">
+                        <i class="ti-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if profile.instagram %}
+                <li class="social-item">
+                    <a class="social-link" href="{{ profile.instagram }}">
+                        <i class="ti-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if profile.github %}
+                <li class="social-item">
+                    <a class="social-link" href="{{ profile.github }}">
+                        <i class="ti-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">My Expertise</h3>
+            <span class="line mb-5"></span>
+            {% for expertise in expertise %}
+            <div class="row">
+                <div class="col-1 text-danger pt-1">
+                    <i class="{{ expertise.icon_class }} icon-lg"></i>
+                </div>
+                <div class="col-10 ml-auto mr-3">
+                    <h6>{{ expertise.title }}</h6>
+                    <p class="subtitle">{{ expertise.description }}</p>
+                    <hr>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- Resume Section -->
+<section class="section" id="resume">
+    <div class="container">
+        <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="mt-2">
+                            <h4>Experience</h4>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% for exp in experience %}
+                        <h6 class="title text-danger">{{ exp.start_date|date:"Y" }} - {% if exp.current %}Present{% else %}{{ exp.end_date|date:"Y" }}{% endif %}</h6>
+                        <P>{{ exp.position }}</P>
+                        <P class="subtitle">{{ exp.description }}</P>
+                        {% if not forloop.last %}
+                        <hr>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="mt-2">
+                            <h4>Education</h4>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% for edu in education %}
+                        <h6 class="title text-danger">{{ edu.start_date|date:"Y" }} - {% if edu.current %}Present{% else %}{{ edu.end_date|date:"Y" }}{% endif %}</h6>
+                        <P>{{ edu.degree }}</P>
+                        <P class="subtitle">{{ edu.description }}</P>
+                        {% if not forloop.last %}
+                        <hr>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="pull-left">
+                            <h4 class="mt-2">Skills</h4>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="card-body pb-2">
+                        {% for skill in skills %}
+                        <h6>{{ skill.name }}</h6>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ skill.percentage }}%"
+                                aria-valuenow="{{ skill.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="section" id="services">
+    <div class="container">
+        <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Services</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-5">
+                    <div class="card-header has-icon">
+                        <i class="{{ service.icon_class }} text-danger" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-body px-4 py-3">
+                        <h5 class="mb-3 card-title text-dark">{{ service.title }}</h5>
+                        <p class="subtitle">{{ service.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="section bg-custom-gray" id="portfolio">
+    <div class="container">
+        <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
+        <div class="portfolio">
+            <div class="filters">
+                <!-- These filters are not functional without JavaScript -->
+                <!-- Consider using JavaScript to implement filtering -->
+                <a href="#" data-filter="*" class="active">All</a>
+                {% for category in categories %}
+                <a href="#" data-filter=".{{ category.slug }}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+            <div class="portfolio-container" style="position: relative;">
+                {% for item in portfolio_items %}
+                <div class="col-md-6 col-lg-4 {{ item.category.slug }} {% if item.is_new %}new{% endif %}"
+                    style="position: relative; float: left;">
+                    <div class="portfolio-item">
+                        <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}">
+                        <div class="content-holder">
+                            <a class="img-popup" href="{{ item.image.url }}"></a>
+                            <div class="text-holder">
+                                <h6 class="title">{{ item.category.name }}</h6>
+                                <p class="subtitle">{{ item.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Blog Section -->
+<section class="section" id="blog">
+    <div class="container">
+        <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
+        <div class="row">
+            {% for post in blog_posts %}
+            <div class="blog-card">
+                <div class="img-holder">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                </div>
+                <div class="content-holder">
+                    <h6 class="title">{{ post.title }}</h6>
+
+                    <p class="post-details">
+                        <a href="#">By: {{ post.author }}</a>
+                        <a href="#"><i class="ti-heart text-danger"></i> {{ post.likes }}</a>
+                        <a href="#"><i class="ti-comment"></i> {{ post.comments }}</a>
+                    </p>
+
+                    <p>{{ post.excerpt }}</p>
+
+                    <a href="{% url 'portfolio:blog_detail' post.slug %}" class="read-more">
+                        Read more <i class="ti-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<div class="section contact" id="contact">
+    <div id="map" class="map"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-form-card">
+                    <h4 class="contact-title">Send a message</h4>
+                    {% if error_message %}
+                        <div class="alert alert-danger">{{ error_message }}</div>
+                     {% endif %}
+                    <form method="post" action="{% url 'portfolio:contact' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input name="name" class="form-control" type="text" placeholder="Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input name="email" class="form-control" type="email" placeholder="Email *" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" rows="7" placeholder="Message *" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info-card">
+                    <h4 class="contact-title">Get in touch</h4>
+                    <div class="row mb-2">
+                        <div class="col-1 pt-1 mr-1">
+                            <i class="ti-mobile icon-md"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="d-inline">Phone: <br> <span class="text-muted">{{ profile.phone }}</span></h6>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1 pt-1 mr-1">
+                            <i class="ti-map-alt icon-md"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="d-inline">Address: <br> <span class="text-muted">{{ profile.address }}</span></h6>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1 pt-1 mr-1">
+                            <i class="ti-envelope icon-md"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="d-inline">Email: <br> <span class="text-muted">{{ profile.email }}</span></h6>
+                        </div>
+                    </div>
+                    <ul class="social-icons pt-4">
+                        {% if profile.facebook %}
+                        <li class="social-item">
+                            <a class="social-link text-dark" href="{{ profile.facebook }}">
+                                <i class="ti-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if profile.twitter %}
+                        <li class="social-item">
+                            <a class="social-link text-dark" href="{{ profile.twitter }}">
+                                <i class="ti-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if profile.instagram %}
+                        <li class="social-item">
+                            <a class="social-link text-dark" href="{{ profile.instagram }}">
+                                <i class="ti-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if profile.github %}
+                        <li class="social-item">
+                            <a class="social-link text-dark" href="{{ profile.github }}">
+                                <i class="ti-github" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

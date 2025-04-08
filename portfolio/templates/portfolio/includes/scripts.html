@@ -1,0 +1,16 @@
+{% load static %}
+
+<!-- core  -->
+<script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+{% if request.path == '/' %}
+<!-- bootstrap 3 affix -->
+<script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
+<!-- Isotope  -->
+<script src="{% static 'vendors/isotope/isotope.pkgd.js' %}"></script>
+<!-- Google maps -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+<!-- JohnDoe js -->
+<script src="{% static 'js/johndoe.js' %}"></script>
+{% endif %}

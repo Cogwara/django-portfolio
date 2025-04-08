@@ -1,0 +1,44 @@
+<header class="header">
+    <div class="container">
+        <ul class="social-icons pt-3">
+            {% if profile.facebook %}
+            <li class="social-item">
+                <a class="social-link text-light" href="{{ profile.facebook }}">
+                    <i class="ti-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+            {% endif %}
+            {% if profile.twitter %}
+            <li class="social-item">
+                <a class="social-link text-light" href="{{ profile.twitter }}">
+                    <i class="ti-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+            {% endif %}
+            {% if profile.instagram %}
+            <li class="social-item">
+                <a class="social-link text-light" href="{{ profile.instagram }}">
+                    <i class="ti-instagram" aria-hidden="true"></i>
+                </a>
+            </li>
+            {% endif %}
+            {% if profile.github %}
+            <li class="social-item">
+                <a class="social-link text-light" href="{{ profile.github }}">
+                    <i class="ti-github" aria-hidden="true"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>  
+        <div class="header-content">
+            <h4 class="header-subtitle">Hello, I am</h4>
+            <h1 class="header-title">{{ profile.name }}</h1>
+            <h6 class="header-mono">{{ profile.title }}</h6>
+            {% if profile.resume %}
+            <a href="{{ profile.resume.url }}" class="btn btn-primary btn-rounded" download>
+                <i class="ti-printer pr-2"></i>Download Resume
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</header>
