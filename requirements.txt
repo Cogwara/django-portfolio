@@ -14,7 +14,7 @@ certifi==2023.11.17
 chardet==5.2.0
 click==8.1.6
 cloud-init==24.4.1
-cockpit @ file:///build/cockpit-mHshv0/cockpit-314/tmp/wheel/cockpit-314-py3-none-any.whl#sha256=5ee1902356c6db04f12a0b33e9cef9bf9201ffc4523b40d6c79c9b2e54e06337
+cockpit
 colorama==0.4.6
 command-not-found==0.3
 ConfigArgParse==1.7
